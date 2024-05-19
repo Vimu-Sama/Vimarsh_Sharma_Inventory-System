@@ -2,42 +2,39 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    public float speed = 10f;
-    public float jumpForce = 5f;
+    public CharacterController controller;
+    public float speed = 12f;
+    public float gravity = -9.81f;
+    public float jumpHeight = 3f;
 
-    private Rigidbody rb;
+    private Vector3 velocity;
     private bool isGrounded;
 
-    void Start()
-    {
-        rb = GetComponent<Rigidbody>();
-    }
+    public Transform groundCheck;
+    public float groundDistance = 0.4f;
+    public LayerMask groundMask;
 
     void Update()
     {
-        float moveX = Input.GetAxis("Horizontal");
-        float moveZ = Input.GetAxis("Vertical");
+        isGrounded = Physics.CheckSphere(groundCheck.position, groundDistance, groundMask);
 
-        Vector3 move = transform.right * moveX + transform.forward * moveZ;
-        Vector3 newVelocity = move * speed;
-        newVelocity.y = rb.velocity.y; // Preserve the current y velocity (gravity)
-        rb.velocity = newVelocity;
+        if (isGrounded && velocity.y < 0)
+        {
+            velocity.y = -2f;
+        }
+
+        float x = Input.GetAxis("Horizontal");
+        float z = Input.GetAxis("Vertical");
+
+        Vector3 move = transform.right * x + transform.forward * z;
+        controller.Move(move * speed * Time.deltaTime);
 
         if (Input.GetButtonDown("Jump") && isGrounded)
         {
-            rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
+            velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
         }
-    }
 
-    void OnCollisionStay(Collision collision)
-    {
-        // Check if the player is touching the ground
-        isGrounded = true;
-    }
-
-    void OnCollisionExit(Collision collision)
-    {
-        // When the player is not touching the ground, they are not grounded
-        isGrounded = false;
+        velocity.y += gravity * Time.deltaTime;
+        controller.Move(velocity * Time.deltaTime);
     }
 }
