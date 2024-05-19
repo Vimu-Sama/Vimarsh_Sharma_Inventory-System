@@ -27,7 +27,7 @@ public class PlayerShooter : MonoBehaviour
         // Spawn a bullet
         GameObject bullet = Instantiate(bulletPrefab, bulletSpawn.position, bulletSpawn.rotation);
         Rigidbody rb = bullet.GetComponent<Rigidbody>();
-        rb.velocity = bulletSpawn.forward * bulletSpeed;
+        rb.AddForce(bulletSpawn.forward * bulletSpeed, ForceMode.Impulse);
 
         // Optional: If you want to add hit detection using Raycast
         RaycastHit hit;
