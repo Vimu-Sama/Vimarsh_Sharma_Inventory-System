@@ -4,5 +4,6 @@ public class WeaponScriptSO : ScriptableObject
 {
     public string weaponName;
     public int weaponClipAmmo;
-    GameObject weaponModel;
+    public GameObject weaponModel;
+    public GameObject bulletPrefab;
 }
