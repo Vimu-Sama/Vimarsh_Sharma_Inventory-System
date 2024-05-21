@@ -993,6 +993,7 @@ MonoBehaviour:
   bulletPrefab: {fileID: 2469474940520412426, guid: e9249858e76ac414bb5bf393efc8cae5, type: 3}
   bulletSpawn: {fileID: 9114751640726850623}
   bulletSpeed: 30
+  inventoryManager: {fileID: 4390977667255162245}
 --- !u!1 &8048689373460308353
 GameObject:
   m_ObjectHideFlags: 0

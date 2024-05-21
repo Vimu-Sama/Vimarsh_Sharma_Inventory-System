@@ -8,7 +8,8 @@ namespace Inventory
 {
     public class InventoryManager : MonoBehaviour
     {
-        private int tempVariable = 0;
+        private int tempIntegerVariable = 0;
+        private bool tempBoolVariable= false;
 
         #region Inventory Variables
         private bool isInventoryOn = false;
@@ -43,25 +44,38 @@ namespace Inventory
 
         public int AddItemToInventory(string itemName, int itemQuantity, Sprite itemImage)
         {
-            tempVariable = 0;
+            tempIntegerVariable = 0;
             for (int i = 0; i < itemSlots.Length; i++)
             {
                 if ((!itemSlots[i].IsItemSlotFilled && itemSlots[i].itemName == itemName) ||
                     itemSlots[i].IsItemSlotEmpty)
                 {
-                    tempVariable = itemSlots[i].AddItems(itemName, itemQuantity, itemImage);
-                    if (tempVariable > 0)
+                    tempIntegerVariable = itemSlots[i].AddItems(itemName, itemQuantity, itemImage);
+                    if (tempIntegerVariable > 0)
                     {
-                        itemQuantity = tempVariable;
+                        itemQuantity = tempIntegerVariable;
                         continue;
                     }
                     else
                         break;
                 }
             }
-            return tempVariable;
+            return tempIntegerVariable;
         }
 
-
+        public bool DeleteItemFromInventory(string deleteItemName, int itemQuantity)
+        {
+            tempBoolVariable = false;
+            for(int i = 0; i < itemSlots.Length;i++)
+            {
+                if (itemSlots[i].itemName== deleteItemName)
+                {
+                    tempBoolVariable= itemSlots[i].DeleteItem(deleteItemName, itemQuantity);
+                    if (tempBoolVariable)
+                        break;
+                }
+            }
+            return tempBoolVariable;
+        }
     }
 }

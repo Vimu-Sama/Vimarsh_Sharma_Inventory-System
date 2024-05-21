@@ -49,5 +49,29 @@ namespace Inventory.itemSlot
             return tempVariable;
         }
 
+
+        public bool DeleteItem(string deletingItemName, int deletionCount)
+        {
+            if(deletionCount<=currentSlotQuantity)
+            {
+                isItemSlotFilled = false;
+                currentSlotQuantity -= deletionCount;
+                contentQuantityIndicator.text= currentSlotQuantity.ToString();
+                if(currentSlotQuantity==0)
+                {
+                    this.itemName = null;
+                    contentQuantityIndicator.enabled = false;
+                    itemImagePlaceHolder.sprite = null;
+                    itemImagePlaceHolder.enabled = false;
+                    isItemSlotEmpty = true;
+                }
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
     }
 }

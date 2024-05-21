@@ -1,3 +1,4 @@
+using Inventory;
 using UnityEngine;
 using static UnityEngine.GraphicsBuffer;
 
@@ -8,8 +9,10 @@ public class PlayerShooter : MonoBehaviour
     public float fireRate = 15f;
     public Camera fpsCam;
     public GameObject bulletPrefab;
+    public GameObject currentAmmoBeingUsed;
     public Transform bulletSpawn;
     public float bulletSpeed = 20f;
+    [SerializeField] private InventoryManager inventoryManager;
 
     private float nextTimeToFire = 0f;
 
@@ -25,21 +28,23 @@ public class PlayerShooter : MonoBehaviour
     void Shoot()
     {
         // Spawn a bullet
-        GameObject bullet = Instantiate(bulletPrefab, bulletSpawn.position, bulletSpawn.rotation);
-        Rigidbody rb = bullet.GetComponent<Rigidbody>();
-        rb.AddForce(bulletSpawn.forward * bulletSpeed, ForceMode.Impulse);
-
-        // Optional: If you want to add hit detection using Raycast
-        RaycastHit hit;
-        if (Physics.Raycast(fpsCam.transform.position, fpsCam.transform.forward, out hit, range))
+        if(inventoryManager.DeleteItemFromInventory(currentAmmoBeingUsed.name, 1))
         {
-            //Debug.Log(hit.transform.name);
-
-            //Target target = hit.transform.GetComponent<Target>();
-            //if (target != null)
-            //{
-            //    target.TakeDamage(damage);
-            //}
+            GameObject bullet = Instantiate(bulletPrefab, bulletSpawn.position, bulletSpawn.rotation);
+            Rigidbody rb = bullet.GetComponent<Rigidbody>();
+            rb.AddForce(bulletSpawn.forward * bulletSpeed, ForceMode.Impulse);
         }
+
+        //RaycastHit hit;
+        //if (Physics.Raycast(fpsCam.transform.position, fpsCam.transform.forward, out hit, range))
+        //{
+        //    Debug.Log(hit.transform.name);
+
+        //    Target target = hit.transform.GetComponent<Target>();
+        //    if (target != null)
+        //    {
+        //        target.TakeDamage(damage);
+        //    }
+        //}
     }
 }
