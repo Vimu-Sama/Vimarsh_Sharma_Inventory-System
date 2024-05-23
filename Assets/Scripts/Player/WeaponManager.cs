@@ -14,7 +14,7 @@ namespace WeaponManagement
         private GameObject currentBulletPrefab;
         [SerializeField] private Transform weaponSpawnLocation;
         
-        public void SetCurrentWeapon(GameObject weaponModel, GameObject ammo, GameObject bulletPrefab)
+        public void SetCurrentWeaponProperties(GameObject weaponModel, GameObject ammo, GameObject bulletPrefab)
         {
             currentWeapon = weaponModel;
             currentAmmoUsed= ammo;
@@ -24,11 +24,37 @@ namespace WeaponManagement
             tempVariable.transform.parent= this.transform;
         }
 
+        public void ResetWeapon()
+        {
+            currentWeapon = null;
+            currentAmmoUsed= null;
+            currentBulletPrefab = null;
+            tempVariable = Instantiate(currentWeapon, weaponSpawnLocation);
+            tempVariable.transform.parent = this.transform;
+        }
+
+
+        public GameObject CurrentWeapon
+        {
+            get
+            {
+                return currentWeapon;
+            }
+        }
+
         public GameObject CurrentBulletPrefab
         {
             get
             {
                 return currentBulletPrefab;
+            }
+        }
+
+        public GameObject CurrentAmmoUsed
+        {
+            get
+            {
+                return currentAmmoUsed;
             }
         }
 

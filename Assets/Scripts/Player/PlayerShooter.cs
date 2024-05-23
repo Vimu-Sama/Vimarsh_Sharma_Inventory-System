@@ -29,7 +29,12 @@ public class PlayerShooter : MonoBehaviour
 
     void Shoot()
     {
+        if(weaponManager.CurrentWeapon==null)
+        {
+            return;
+        }
         bulletPrefab = weaponManager.CurrentBulletPrefab;
+        currentAmmoBeingUsed = weaponManager.CurrentAmmoUsed;
         // Spawn a bullet
         if(inventoryManager.DeleteItemFromInventory(currentAmmoBeingUsed.name, 1))
         {
