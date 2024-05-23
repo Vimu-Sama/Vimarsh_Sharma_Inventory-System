@@ -40,10 +40,6 @@ namespace Inventory.itemSlot
 
         #region Common Functions
 
-        private void Start()
-        {
-            itemPrefab = new GameObject();
-        }
         protected void AssignItemToSlot(string name, int quantity, Sprite image, GameObject itemModel)
         {
             itemName = name;
@@ -53,7 +49,7 @@ namespace Inventory.itemSlot
             itemImagePlaceHolder.sprite = image;
             itemImagePlaceHolder.enabled = true;
             isItemSlotEmpty = false;
-            itemPrefab = itemModel;
+            itemPrefab= itemModel;
         }
 
         protected void ResetSlot()
@@ -64,7 +60,6 @@ namespace Inventory.itemSlot
             itemImagePlaceHolder.enabled = false;
             isItemSlotEmpty = true;
             isItemSlotFilled = false;
-            itemPrefab = null;
         }
 
 

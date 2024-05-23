@@ -24,7 +24,13 @@ namespace Items
         {
             if (LayerMask.LayerToName(other.gameObject.layer) == "Player")
             {
-                weaponManager.SetCurrentWeapon(currentWeapon, currentAmmoUsed, currentBulletPrefab);
+                if(itemSO.itemType==ItemType.weapon)
+                    weaponManager.SetCurrentWeapon(currentWeapon, currentAmmoUsed, currentBulletPrefab);
+                else if (itemSO.itemType==ItemType.baggage)
+                {
+                    //funcionality to increase the inventory size
+                }
+
                 base.OnTriggerEnter(other);
             }
         }

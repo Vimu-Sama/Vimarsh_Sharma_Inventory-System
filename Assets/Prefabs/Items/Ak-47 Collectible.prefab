@@ -126,11 +126,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   inventoryManager: {fileID: 0}
-  itemName: AK-47
+  itemSO: {fileID: 11400000, guid: 7448dbd3607ad814091be3f7ec7f746f, type: 2}
   itemQuantity: 1
   rotateSpeed: 35
-  itemImage: {fileID: 21300000, guid: 4ba7f1b665482024a913afee83502b69, type: 3}
-  itemType: 0
   currentWeapon: {fileID: 7919082951220490528, guid: bcd086cd820f8064e896ace149d3d85b, type: 3}
   currentAmmoUsed: {fileID: 7978713142821991383, guid: 488490272914f2d4c93f2dc4bdb2ad97, type: 3}
   currentBulletPrefab: {fileID: 2469474940520412426, guid: e9249858e76ac414bb5bf393efc8cae5, type: 3}

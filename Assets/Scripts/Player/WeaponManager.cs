@@ -1,4 +1,5 @@
 using Inventory;
+using Items;
 using UnityEngine;
 
 
@@ -6,6 +7,8 @@ namespace WeaponManagement
 {
     public class WeaponManager : MonoBehaviour
     {
+        private GameObject tempVariable;
+
         private GameObject currentWeapon;
         private GameObject currentAmmoUsed;
         private GameObject currentBulletPrefab;
@@ -16,8 +19,9 @@ namespace WeaponManagement
             currentWeapon = weaponModel;
             currentAmmoUsed= ammo;
             currentBulletPrefab = bulletPrefab;
-            GameObject spawnedGun= Instantiate(currentWeapon, weaponSpawnLocation);
-            spawnedGun.transform.parent= this.transform;
+            Destroy(tempVariable);
+            tempVariable= Instantiate(currentWeapon, weaponSpawnLocation);
+            tempVariable.transform.parent= this.transform;
         }
 
         public GameObject CurrentBulletPrefab

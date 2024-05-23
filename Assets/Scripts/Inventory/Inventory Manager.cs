@@ -70,7 +70,9 @@ namespace Inventory
                 {
                     if (uniqueItemSlots[i].IsItemSlotEmpty == false)
                     {
-                        Instantiate(uniqueItemSlots[i].ItemPrefab, droppedItemSpawnPos);
+                        GameObject temp =Instantiate(uniqueItemSlots[i].ItemPrefab, droppedItemSpawnPos);
+                        temp.transform.localScale = Vector3.one;
+                        temp.transform.parent = null;
                     }
                     tempIntegerVariable= uniqueItemSlots[i].AddItem(itemName, itemQuantity, itemImage, itemType, itemPrefab);
                     if (tempIntegerVariable <= 0)

@@ -20,16 +20,13 @@ namespace Items
     public class Item : MonoBehaviour
     {
         [SerializeField] private InventoryManager inventoryManager;
-        [SerializeField] private string itemName;
+        [SerializeField] protected ScriptableObjectItemScript itemSO;
         [SerializeField] private int itemQuantity;
         [SerializeField] private float rotateSpeed = 10;
-        [SerializeField] private Sprite itemImage;
-        [SerializeField] private ItemType itemType;
-        [SerializeField] private GameObject itemPrefab;
+        
 
         protected virtual void Start()
         {
-            itemPrefab = this.gameObject;
             inventoryManager = FindObjectOfType<InventoryManager>().GetComponent<InventoryManager>();
         }
 
@@ -37,9 +34,9 @@ namespace Items
         {
             if (LayerMask.LayerToName(other.gameObject.layer) == "Player")
             {
-                itemQuantity = inventoryManager.AddItemToInventory(itemName, itemQuantity, itemImage, itemType, itemPrefab);
+                itemQuantity = inventoryManager.AddItemToInventory(itemSO.name, itemQuantity, itemSO.itemImage, itemSO.itemType, itemSO.itemPrefab);
                 if (itemQuantity <= 0)
-                    Destroy(this.gameObject, 2f);
+                    Destroy(this.gameObject);
             }
         }
 
