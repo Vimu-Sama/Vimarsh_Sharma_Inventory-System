@@ -1,7 +1,13 @@
 using UnityEngine;
+using System;
+using Unity.VisualScripting;
 
 public class PlayerMovement : MonoBehaviour
 {
+    public static Action<bool> RestrictPlayerMovementAndShooting;
+
+
+    private bool disableMovement = false;
     public CharacterController controller;
     public float speed = 12f;
     public float gravity = -9.81f;
@@ -14,9 +20,23 @@ public class PlayerMovement : MonoBehaviour
     public float groundDistance = 0.4f;
     public LayerMask groundMask;
 
+
+    private void Start()
+    {
+        RestrictPlayerMovementAndShooting += SetPlayerMovement;
+    }
+
+
+    private void SetPlayerMovement(bool p)
+    {
+        disableMovement = p;
+    }
     void Update()
     {
         isGrounded = Physics.CheckSphere(groundCheck.position, groundDistance, groundMask);
+
+        if (disableMovement)
+            return;
 
         if (isGrounded && velocity.y < 0)
         {

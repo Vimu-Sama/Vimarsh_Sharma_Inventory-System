@@ -1,6 +1,7 @@
 using Inventory;
 using Items;
 using UnityEngine;
+using TMPro;
 
 
 namespace WeaponManagement
@@ -13,27 +14,10 @@ namespace WeaponManagement
         private GameObject currentAmmoUsed;
         private GameObject currentBulletPrefab;
         [SerializeField] private Transform weaponSpawnLocation;
-        
-        public void SetCurrentWeaponProperties(GameObject weaponModel, GameObject ammo, GameObject bulletPrefab)
-        {
-            currentWeapon = weaponModel;
-            currentAmmoUsed= ammo;
-            currentBulletPrefab = bulletPrefab;
-            Destroy(tempVariable);
-            tempVariable= Instantiate(currentWeapon, weaponSpawnLocation);
-            tempVariable.transform.parent= this.transform;
-        }
-
-        public void ResetWeapon()
-        {
-            currentWeapon = null;
-            currentAmmoUsed= null;
-            currentBulletPrefab = null;
-            tempVariable = Instantiate(currentWeapon, weaponSpawnLocation);
-            tempVariable.transform.parent = this.transform;
-        }
+        [SerializeField] private TextMeshProUGUI weaponSwapPrompt;
 
 
+        #region getters
         public GameObject CurrentWeapon
         {
             get
@@ -56,6 +40,39 @@ namespace WeaponManagement
             {
                 return currentAmmoUsed;
             }
+        }
+
+
+        public TextMeshProUGUI WeaponSwapPrompt
+        {
+            get
+            {
+                return weaponSwapPrompt;
+            }
+        }
+
+        #endregion
+
+        public void SetCurrentWeaponProperties(GameObject weaponModel, GameObject ammo, GameObject bulletPrefab)
+        {
+            if (currentWeapon == null || (currentWeapon != null && Input.GetKey(KeyCode.F)))
+            {
+                currentWeapon = weaponModel;
+                currentAmmoUsed = ammo;
+                currentBulletPrefab = bulletPrefab;
+                Destroy(tempVariable);
+                tempVariable = Instantiate(currentWeapon, weaponSpawnLocation);
+                tempVariable.transform.parent = this.transform;
+            }
+        }
+
+        public void ResetWeapon()
+        {
+            currentWeapon = null;
+            currentAmmoUsed= null;
+            currentBulletPrefab = null;
+            tempVariable = Instantiate(currentWeapon, weaponSpawnLocation);
+            tempVariable.transform.parent = this.transform;
         }
 
     }

@@ -30,7 +30,7 @@ namespace Items
             inventoryManager = FindObjectOfType<InventoryManager>().GetComponent<InventoryManager>();
         }
 
-        protected virtual void OnTriggerEnter(Collider other)
+        protected virtual void OnTriggerStay(Collider other)
         {
             if (LayerMask.LayerToName(other.gameObject.layer) == "Player")
             {

@@ -1,4 +1,6 @@
 using Inventory.itemSlot;
+using System;
+using System.Linq;
 using System.Security.Cryptography;
 using UnityEngine;
 
@@ -7,6 +9,10 @@ namespace Inventory
 {
     public class InventoryManager : MonoBehaviour
     {
+        public static Action DeSelectItems;
+
+
+
         private int tempIntegerVariable = 0;
         private bool tempBoolVariable= false;
 
@@ -23,6 +29,10 @@ namespace Inventory
         private int fixedSecondaryGunSlot;
         private int armorFixedSlot;
 
+        private void Start()
+        {
+            DeSelectItems += DeselectAllItemSlots;
+        }
 
         private void Update()
         {
@@ -37,10 +47,24 @@ namespace Inventory
             {
                 InventoryUI.SetActive(false);
                 isInventoryOn = false;
+                DeselectAllItemSlots();
                 Cursor.lockState = CursorLockMode.Locked;
             }
-
+            PlayerMovement.RestrictPlayerMovementAndShooting(InventoryUI.activeInHierarchy);
         }
+
+        public void DeselectAllItemSlots()
+        {
+            for(int i=0;i<uniqueItemSlots.Length;i++)
+            {
+                uniqueItemSlots[i].itemSlotSelectionHighlight.SetActive(false);
+            }
+            for(int i=0;i<itemSlots.Length;i++)
+            {
+                itemSlots[i].itemSlotSelectionHighlight.SetActive(false);
+            }
+        }
+
 
 
         public int AddItemToInventory(string itemName, int itemQuantity, Sprite itemImage, ItemType itemType, GameObject itemPrefab)

@@ -2,20 +2,26 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 
 namespace Inventory.itemSlot
 {
-    public abstract class ItemSlot : MonoBehaviour
+    public abstract class ItemSlot : MonoBehaviour, IPointerClickHandler
     {
+
+
         #region Item Info
+
         protected string itemName = "";
         protected int slotMaxQuantity = 120;
         protected int currentSlotQuantity = 0;
         protected bool isItemSlotFilled = false;
         protected bool isItemSlotEmpty = true;
         protected GameObject itemPrefab;
+        public GameObject itemSlotSelectionHighlight;
+
         #endregion
 
         #region Item Slot Visual References
@@ -35,6 +41,7 @@ namespace Inventory.itemSlot
 
         #region abstract functions
         public abstract int AddItem(string name, int quantity, Sprite image, ItemType itemType, GameObject itemModel);
+
         public abstract bool RemoveItem(string name, int count);
         #endregion
 
@@ -64,5 +71,15 @@ namespace Inventory.itemSlot
 
 
         #endregion
+
+        public void OnPointerClick(PointerEventData eventData)
+        {
+            if(eventData.button== PointerEventData.InputButton.Left)
+            {
+                InventoryManager.DeSelectItems?.Invoke();
+                itemSlotSelectionHighlight.gameObject.SetActive(true);
+            }
+        }
+
     }
 }
