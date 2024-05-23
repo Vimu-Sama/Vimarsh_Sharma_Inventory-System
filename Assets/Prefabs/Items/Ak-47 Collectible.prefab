@@ -1,0 +1,137 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &4677408874762664954
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: -8689022443345269229, guid: c77e99c8769149b469f0991fd3036678, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 7fd3dffe6df5b7a46be1693115b4254e, type: 2}
+    - target: {fileID: -8679921383154817045, guid: c77e99c8769149b469f0991fd3036678, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.002
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: c77e99c8769149b469f0991fd3036678, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.002
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: c77e99c8769149b469f0991fd3036678, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.002
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: c77e99c8769149b469f0991fd3036678, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 1.55
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: c77e99c8769149b469f0991fd3036678, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.904
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: c77e99c8769149b469f0991fd3036678, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 6.24
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: c77e99c8769149b469f0991fd3036678, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: c77e99c8769149b469f0991fd3036678, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: c77e99c8769149b469f0991fd3036678, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: c77e99c8769149b469f0991fd3036678, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: c77e99c8769149b469f0991fd3036678, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: c77e99c8769149b469f0991fd3036678, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: c77e99c8769149b469f0991fd3036678, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: c77e99c8769149b469f0991fd3036678, type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: c77e99c8769149b469f0991fd3036678, type: 3}
+      propertyPath: m_Name
+      value: Ak-47 Collectible
+      objectReference: {fileID: 0}
+    - target: {fileID: 8657192189601032249, guid: c77e99c8769149b469f0991fd3036678, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 8de49b94d0cc5514abb23fcb2b70c784, type: 2}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: c77e99c8769149b469f0991fd3036678, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 6917612688633157914}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: c77e99c8769149b469f0991fd3036678, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 8746938488822904599}
+  m_SourcePrefab: {fileID: 100100000, guid: c77e99c8769149b469f0991fd3036678, type: 3}
+--- !u!1 &5487661740020844203 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: c77e99c8769149b469f0991fd3036678, type: 3}
+  m_PrefabInstance: {fileID: 4677408874762664954}
+  m_PrefabAsset: {fileID: 0}
+--- !u!65 &6917612688633157914
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5487661740020844203}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 402.42783, y: 99.999985, z: 99.99996}
+  m_Center: {x: 5.2045283, y: 58.243435, z: 0}
+--- !u!114 &8746938488822904599
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5487661740020844203}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 248d75a6fe8467845b1aa3910f1f2dbe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  inventoryManager: {fileID: 0}
+  itemName: AK-47
+  itemQuantity: 1
+  rotateSpeed: 35
+  itemImage: {fileID: 21300000, guid: 4ba7f1b665482024a913afee83502b69, type: 3}
+  itemType: 0
+  currentWeapon: {fileID: 7919082951220490528, guid: bcd086cd820f8064e896ace149d3d85b, type: 3}
+  currentAmmoUsed: {fileID: 7978713142821991383, guid: 488490272914f2d4c93f2dc4bdb2ad97, type: 3}
+  currentBulletPrefab: {fileID: 2469474940520412426, guid: e9249858e76ac414bb5bf393efc8cae5, type: 3}
+  weaponManager: {fileID: 0}

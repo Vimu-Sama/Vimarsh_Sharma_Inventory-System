@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 2245876556386949607}
   - component: {fileID: 6023918098430601944}
   m_Layer: 10
-  m_Name: Inventory-Item
+  m_Name: Stackable-Item
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

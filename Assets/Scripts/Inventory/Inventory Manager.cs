@@ -1,7 +1,6 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
 using Inventory.itemSlot;
+using System.Security.Cryptography;
+using UnityEngine;
 
 
 namespace Inventory
@@ -14,7 +13,9 @@ namespace Inventory
         #region Inventory Variables
         private bool isInventoryOn = false;
         [SerializeField] private GameObject InventoryUI;
-        [SerializeField] private ItemSlot[] itemSlots;
+        [SerializeField] private StackableItemSlot[] itemSlots;
+        [SerializeField] private UniqueItemSlot[] uniqueItemSlots;
+        [SerializeField] private Transform droppedItemSpawnPos;
         #endregion
 
 
@@ -42,21 +43,37 @@ namespace Inventory
         }
 
 
-        public int AddItemToInventory(string itemName, int itemQuantity, Sprite itemImage)
+        public int AddItemToInventory(string itemName, int itemQuantity, Sprite itemImage, ItemType itemType, GameObject itemPrefab)
         {
-            tempIntegerVariable = 0;
-            for (int i = 0; i < itemSlots.Length; i++)
+            if (itemType == ItemType.collectible)
             {
-                if ((!itemSlots[i].IsItemSlotFilled && itemSlots[i].itemName == itemName) ||
-                    itemSlots[i].IsItemSlotEmpty)
+                tempIntegerVariable = 0;
+                for (int i = 0; i < itemSlots.Length; i++)
                 {
-                    tempIntegerVariable = itemSlots[i].AddItems(itemName, itemQuantity, itemImage);
-                    if (tempIntegerVariable > 0)
+                    if ((!itemSlots[i].IsItemSlotFilled && itemSlots[i].ItemName == itemName) ||
+                        itemSlots[i].IsItemSlotEmpty)
                     {
-                        itemQuantity = tempIntegerVariable;
-                        continue;
+                        tempIntegerVariable = itemSlots[i].AddItem(itemName, itemQuantity, itemImage, itemType, itemPrefab);
+                        if (tempIntegerVariable > 0)
+                        {
+                            itemQuantity = tempIntegerVariable;
+                            continue;
+                        }
+                        else
+                            break;
                     }
-                    else
+                }
+            }
+            else
+            {
+                for(int i=0;i<uniqueItemSlots.Length;i++)
+                {
+                    if (uniqueItemSlots[i].IsItemSlotEmpty == false)
+                    {
+                        Instantiate(uniqueItemSlots[i].ItemPrefab, droppedItemSpawnPos);
+                    }
+                    tempIntegerVariable= uniqueItemSlots[i].AddItem(itemName, itemQuantity, itemImage, itemType, itemPrefab);
+                    if (tempIntegerVariable <= 0)
                         break;
                 }
             }
@@ -68,9 +85,9 @@ namespace Inventory
             tempBoolVariable = false;
             for(int i = 0; i < itemSlots.Length;i++)
             {
-                if (itemSlots[i].itemName== deleteItemName)
+                if (itemSlots[i].ItemName== deleteItemName)
                 {
-                    tempBoolVariable= itemSlots[i].DeleteItem(deleteItemName, itemQuantity);
+                    tempBoolVariable= itemSlots[i].RemoveItem(deleteItemName, itemQuantity);
                     if (tempBoolVariable)
                         break;
                 }
