@@ -6,19 +6,19 @@ public class PlayerMovement : MonoBehaviour
 {
     public static Action<bool> RestrictPlayerMovementAndShooting;
 
-
-    private bool disableMovement = false;
-    public CharacterController controller;
-    public float speed = 12f;
-    public float gravity = -9.81f;
-    public float jumpHeight = 3f;
-
     private Vector3 velocity;
     private bool isGrounded;
+    private bool disableMovement = false;
+    public CharacterController controller;
+    [SerializeField ] private float speed = 12f;
+    [SerializeField ] private float gravity = -9.81f;
+    [SerializeField] private float jumpHeight = 3f;
 
-    public Transform groundCheck;
+    
+    [SerializeField] private Transform groundCheck;
     public float groundDistance = 0.4f;
     public LayerMask groundMask;
+    public int playerHealth = 100;
 
 
     private void Start()
@@ -52,6 +52,11 @@ public class PlayerMovement : MonoBehaviour
         if (Input.GetButtonDown("Jump") && isGrounded)
         {
             velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
+        }
+
+        if(Input.GetKey(KeyCode.Escape))
+        {
+            Cursor.lockState = CursorLockMode.None;
         }
 
         velocity.y += gravity * Time.deltaTime;

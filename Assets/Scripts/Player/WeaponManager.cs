@@ -63,6 +63,7 @@ namespace WeaponManagement
         {
             if (currentWeapon == null || (currentWeapon != null && Input.GetKey(KeyCode.F)))
             {
+                InventoryManager.UpdateBulletUI(ammo.name);
                 currentWeapon = weaponModel;
                 currentAmmoUsed = ammo;
                 currentBulletPrefab = bulletPrefab;
