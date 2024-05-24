@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 2563641915573983250}
   - component: {fileID: 2880064951963780734}
   - component: {fileID: 362277941973166890}
+  - component: {fileID: 2142827175770287514}
   m_Layer: 11
   m_Name: Bullet-Ammo-1
   m_TagString: Untagged
@@ -133,3 +134,15 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2469474940520412426}
   m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &2142827175770287514
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2469474940520412426}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbc662db55943de4fad2b21ae831e374, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

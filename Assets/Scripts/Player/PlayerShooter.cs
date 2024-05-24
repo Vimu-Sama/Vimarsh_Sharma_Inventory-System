@@ -7,7 +7,7 @@ using static UnityEngine.GraphicsBuffer;
 public class PlayerShooter : MonoBehaviour
 {
     private bool disableFiring = false;
-
+    private AudioSource audioSource;
     public float damage = 10f;
     public float range = 100f;
     public float fireRate = 15f;
@@ -25,6 +25,7 @@ public class PlayerShooter : MonoBehaviour
     private void Start()
     {
         PlayerMovement.RestrictPlayerMovementAndShooting += SetAbilityToFire;
+        audioSource = GetComponent<AudioSource>();
     }
 
     private void SetAbilityToFire(bool var)
@@ -41,6 +42,10 @@ public class PlayerShooter : MonoBehaviour
             nextTimeToFire = Time.time + 1f / fireRate;
             Shoot();
         }
+        if(Input.GetButtonUp("Fire1"))
+        {
+            audioSource.Stop();
+        }
     }
 
     void Shoot()
@@ -51,10 +56,11 @@ public class PlayerShooter : MonoBehaviour
         }
         bulletPrefab = weaponManager.CurrentBulletPrefab;
         currentAmmoBeingUsed = weaponManager.CurrentAmmoUsed;
-        // Spawn a bullet
         if(inventoryManager.DeleteItemFromInventory(currentAmmoBeingUsed.name, 1))
         {
             GameObject bullet = Instantiate(bulletPrefab, bulletSpawn.position, bulletSpawn.rotation);
+            if(!audioSource.isPlaying)
+                audioSource.Play();
             Rigidbody rb = bullet.GetComponent<Rigidbody>();
             rb.AddForce(bulletSpawn.forward * bulletSpeed, ForceMode.Impulse);
         }
