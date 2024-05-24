@@ -91,11 +91,9 @@ namespace Inventory
         public void UpdateBulletCount(string ammoName)
         {
             currentAmmoBeingUsed = ammoName;
-            Debug.Log("Current ammo-> "+ currentAmmoBeingUsed);
             tempBulletCountVariable = 0;
             for(int i = 0; i < itemSlots.Length;i++)
             {
-                Debug.Log("item slot ammo->" + itemSlots[i].ItemName);
                 if (itemSlots[i].ItemName==currentAmmoBeingUsed)
                 {
                     tempBulletCountVariable += itemSlots[i].CurrentSlotQuantity;
