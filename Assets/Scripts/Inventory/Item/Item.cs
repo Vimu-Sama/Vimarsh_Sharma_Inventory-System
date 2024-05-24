@@ -25,6 +25,8 @@ namespace Items
         [SerializeField] private float rotateSpeed = 10;
         
 
+        public int ItemQuantity { get { return itemQuantity; } set { itemQuantity = value; } }
+
         protected virtual void Start()
         {
             inventoryManager = FindObjectOfType<InventoryManager>().GetComponent<InventoryManager>();

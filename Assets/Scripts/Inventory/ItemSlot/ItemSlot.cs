@@ -29,12 +29,13 @@ namespace Inventory.itemSlot
         [SerializeField] protected TextMeshProUGUI contentQuantityIndicator;
         #endregion
 
-        #region Getters
+        #region Getters Setters
         public string ItemName { get { return itemName; } }
 
         public bool IsItemSlotFilled { get { return isItemSlotFilled; } }
         public bool IsItemSlotEmpty { get { return isItemSlotEmpty; } }
 
+        public int CurrentSlotQuantity { set { currentSlotQuantity= value; } get { return currentSlotQuantity; } }
         public GameObject ItemPrefab {  get { return itemPrefab; } }
 
         #endregion
@@ -42,7 +43,6 @@ namespace Inventory.itemSlot
         #region abstract functions
         public abstract int AddItem(string name, int quantity, Sprite image, ItemType itemType, GameObject itemModel);
 
-        public abstract bool RemoveItem(string name, int count);
         #endregion
 
         #region Common Functions
@@ -58,8 +58,27 @@ namespace Inventory.itemSlot
             isItemSlotEmpty = false;
             itemPrefab= itemModel;
         }
+        public virtual bool RemoveItem(string deletingItemName, int deletionCount)
+        {
+            if (deletionCount <= currentSlotQuantity)
+            {
+                isItemSlotFilled = false;
+                currentSlotQuantity -= deletionCount;
+                contentQuantityIndicator.text = currentSlotQuantity.ToString();
+                if (currentSlotQuantity == 0)
+                {
+                    ResetSlot();
+                }
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
 
-        protected void ResetSlot()
+
+        public void ResetSlot()
         {
             itemName = "";
             contentQuantityIndicator.enabled = false;
@@ -68,7 +87,6 @@ namespace Inventory.itemSlot
             isItemSlotEmpty = true;
             isItemSlotFilled = false;
         }
-
 
         #endregion
 

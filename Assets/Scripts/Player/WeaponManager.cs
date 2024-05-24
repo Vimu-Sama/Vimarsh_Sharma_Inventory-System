@@ -53,6 +53,12 @@ namespace WeaponManagement
 
         #endregion
 
+
+        private void Start()
+        {
+            InventoryManager.DroppedAllWeapons += ResetWeapon;
+        }
+
         public void SetCurrentWeaponProperties(GameObject weaponModel, GameObject ammo, GameObject bulletPrefab)
         {
             if (currentWeapon == null || (currentWeapon != null && Input.GetKey(KeyCode.F)))
@@ -68,11 +74,11 @@ namespace WeaponManagement
 
         public void ResetWeapon()
         {
+            tempVariable.transform.parent = this.transform;
+            Destroy(tempVariable);
             currentWeapon = null;
             currentAmmoUsed= null;
             currentBulletPrefab = null;
-            tempVariable = Instantiate(currentWeapon, weaponSpawnLocation);
-            tempVariable.transform.parent = this.transform;
         }
 
     }

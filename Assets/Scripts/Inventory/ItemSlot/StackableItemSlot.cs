@@ -28,25 +28,5 @@ namespace Inventory.itemSlot
             return tempVariable;
         }
 
-
-        public override bool RemoveItem(string deletingItemName, int deletionCount)
-        {
-            if(deletionCount<=currentSlotQuantity)
-            {
-                isItemSlotFilled = false;
-                currentSlotQuantity -= deletionCount;
-                contentQuantityIndicator.text= currentSlotQuantity.ToString();
-                if(currentSlotQuantity==0)
-                {
-                    ResetSlot();
-                }
-                return true;
-            }
-            else
-            {
-                return false;
-            }
-        }
-
     }
 }

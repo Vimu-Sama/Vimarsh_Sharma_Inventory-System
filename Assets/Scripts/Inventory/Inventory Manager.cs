@@ -1,8 +1,8 @@
 using Inventory.itemSlot;
 using System;
-using System.Linq;
-using System.Security.Cryptography;
 using UnityEngine;
+using Items;
+using WeaponManagement;
 
 
 namespace Inventory
@@ -10,7 +10,7 @@ namespace Inventory
     public class InventoryManager : MonoBehaviour
     {
         public static Action DeSelectItems;
-
+        public static Action DroppedAllWeapons;
 
 
         private int tempIntegerVariable = 0;
@@ -49,6 +49,33 @@ namespace Inventory
                 isInventoryOn = false;
                 DeselectAllItemSlots();
                 Cursor.lockState = CursorLockMode.Locked;
+            }
+            if(Input.GetKeyDown(KeyCode.G))
+            {
+                for (int i = 0, j = 0; i < itemSlots.Length && j < uniqueItemSlots.Length; i++, j++)
+                {
+                    if (itemSlots[i].itemSlotSelectionHighlight.activeInHierarchy && itemSlots[i].IsItemSlotEmpty==false)
+                    {
+                        GameObject temp = Instantiate(itemSlots[i].ItemPrefab, droppedItemSpawnPos);
+                        temp.GetComponent<Item>().ItemQuantity =itemSlots[i].CurrentSlotQuantity; 
+                        temp.transform.parent = null;
+                        temp.transform.localScale = Vector3.one; 
+                        itemSlots[i].RemoveItem(itemSlots[i].name, itemSlots[i].CurrentSlotQuantity);
+                        DeselectAllItemSlots();
+                        break;
+                    }
+                    else if (uniqueItemSlots[j].itemSlotSelectionHighlight.activeInHierarchy && uniqueItemSlots[i].IsItemSlotEmpty==false)
+                    {
+                        //code to drop item
+                        GameObject temp = Instantiate(uniqueItemSlots[i].ItemPrefab, droppedItemSpawnPos);
+                        temp.transform.parent = null;
+                        temp.transform.localScale = droppedItemSpawnPos.localScale;
+                        DroppedAllWeapons?.Invoke();
+                        uniqueItemSlots[i].RemoveItem(uniqueItemSlots[i].name, uniqueItemSlots[i].CurrentSlotQuantity);
+                        DeselectAllItemSlots();
+                        break;
+                    }
+                }
             }
             PlayerMovement.RestrictPlayerMovementAndShooting(InventoryUI.activeInHierarchy);
         }

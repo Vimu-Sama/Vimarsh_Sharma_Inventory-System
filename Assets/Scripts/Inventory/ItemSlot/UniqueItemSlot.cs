@@ -32,7 +32,8 @@ namespace Inventory.itemSlot
 
         public override bool RemoveItem(string name, int count)
         {
-            throw new System.NotImplementedException();
+            base.RemoveItem(name, count);
+            return true;
         }
     }
 }
