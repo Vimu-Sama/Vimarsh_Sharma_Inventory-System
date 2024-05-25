@@ -9,7 +9,6 @@ namespace WeaponManagement
     public class WeaponManager : MonoBehaviour
     {
         private GameObject tempVariable;
-
         private GameObject currentWeapon;
         private GameObject currentAmmoUsed;
         private GameObject currentBulletPrefab;

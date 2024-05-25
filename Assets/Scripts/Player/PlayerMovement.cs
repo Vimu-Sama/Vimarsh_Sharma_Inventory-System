@@ -2,25 +2,28 @@ using UnityEngine;
 using System;
 using Unity.VisualScripting;
 using System.Collections;
+using UnityEngine.UI;
 
 public class PlayerMovement : MonoBehaviour
 {
     public static Action<bool> RestrictPlayerMovementAndShooting;
+    public static Action GameOver;
+
 
     private Vector3 velocity;
     private bool isGrounded;
     private bool disableMovement = false;
-    public CharacterController controller;
+    private int playerHealth = 100;
     [SerializeField ] private float speed = 12f;
     [SerializeField ] private float gravity = -9.81f;
     [SerializeField] private float jumpHeight = 3f;
     [SerializeField] private GameObject damageTakenEffect;
-    
     [SerializeField] private Transform groundCheck;
+    [SerializeField] private Slider healthSlider;
+
     public float groundDistance = 0.4f;
     public LayerMask groundMask;
-    public int playerHealth = 100;
-
+    public CharacterController controller;
 
     private void Start()
     {
@@ -69,6 +72,10 @@ public class PlayerMovement : MonoBehaviour
     {
         if(LayerMask.LayerToName(collision.gameObject.layer)=="EnemyBullet")
         {
+            if (playerHealth < 10)
+                GameOver?.Invoke();
+            playerHealth -= 10;
+            healthSlider.value = (float)playerHealth / 100;
             damageTakenEffect.SetActive(true);
             StartCoroutine(StopShowingEffect());
         }
@@ -76,7 +83,7 @@ public class PlayerMovement : MonoBehaviour
 
     private IEnumerator StopShowingEffect()
     {
-        yield return new WaitForEndOfFrame();
+        yield return new WaitForSeconds(0.5f);
         damageTakenEffect.SetActive(false);
     }
 

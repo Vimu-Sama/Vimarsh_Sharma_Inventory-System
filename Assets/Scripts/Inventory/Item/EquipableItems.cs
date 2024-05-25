@@ -11,7 +11,7 @@ namespace Items
         [SerializeField] private GameObject currentWeapon;
         [SerializeField] private GameObject currentAmmoUsed;
         [SerializeField] private GameObject currentBulletPrefab;
-
+        [SerializeField] private float weaponSwapCoolDownTime= 1f;
         [SerializeField] private WeaponManager weaponManager;
 
         protected override void Start()
@@ -44,6 +44,7 @@ namespace Items
                 {
                     base.OnTriggerStay(other);
                     weaponManager.WeaponSwapPrompt.enabled = false;
+                    //StartCoroutine(CanSwapWeapon());
                 }
                     
             }
@@ -54,6 +55,14 @@ namespace Items
             if (LayerMask.LayerToName(other.gameObject.layer) == "Player")
                 weaponManager.WeaponSwapPrompt.enabled=false;
         }
+
+        //private IEnumerator CanSwapWeapon()
+        //{
+        //    weaponManager.canSwapWeapons = false;
+        //    yield return new WaitForSeconds(weaponSwapCoolDownTime);
+        //    weaponManager.canSwapWeapons = true;
+        //}
+
 
     }
 }
