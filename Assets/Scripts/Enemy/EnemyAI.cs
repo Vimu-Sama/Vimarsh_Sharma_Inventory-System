@@ -1,12 +1,12 @@
 using System.Collections;
-using UnityEditor.UIElements;
 using UnityEngine;
+using UnityEngine.UI;
+
 
 public class EnemyAI : MonoBehaviour
 {
     private Renderer objectRenderer;
     private Color originalColor;
-    [SerializeField] private GameObject materialOnTakingDamage;
     public int health = 100;
     public float detectionRange = 20f;
     public float shootInterval = 2f;
@@ -14,16 +14,19 @@ public class EnemyAI : MonoBehaviour
     public Transform shootPoint;
     public LayerMask playerLayer;
     public float projectileSpeed = 10f;
+    public Slider enemyHealthBarIndicator;
 
     private Transform player;
     private bool playerDetected = false;
     private float shootTimer;
+    private int originalHealth;
 
     void Start()
     {
         objectRenderer = GetComponent<Renderer>();
         shootTimer = shootInterval;
         originalColor = objectRenderer.material.color;
+        originalHealth = health;
     }
 
     void Update()
@@ -48,7 +51,6 @@ public class EnemyAI : MonoBehaviour
             {
                 player = hit.transform;
                 playerDetected = true;
-                Debug.Log("Player detected");
             }
         }
     }
@@ -90,6 +92,8 @@ public class EnemyAI : MonoBehaviour
             if (health < 10)
                 Destroy(gameObject);
             health -= 10;
+            enemyHealthBarIndicator.gameObject.SetActive(true);
+            enemyHealthBarIndicator.value = (float)health / originalHealth;
             StartCoroutine(ChangeEnemyColorOnHit());
         }
     }

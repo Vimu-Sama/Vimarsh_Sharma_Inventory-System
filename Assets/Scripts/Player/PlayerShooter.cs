@@ -64,5 +64,9 @@ public class PlayerShooter : MonoBehaviour
             Rigidbody rb = bullet.GetComponent<Rigidbody>();
             rb.AddForce(bulletSpawn.forward * bulletSpeed, ForceMode.Impulse);
         }
+        else
+        {
+            audioSource.Stop();
+        }
     }
 }

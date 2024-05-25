@@ -1,6 +1,7 @@
 using UnityEngine;
 using System;
 using Unity.VisualScripting;
+using System.Collections;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -13,7 +14,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField ] private float speed = 12f;
     [SerializeField ] private float gravity = -9.81f;
     [SerializeField] private float jumpHeight = 3f;
-
+    [SerializeField] private GameObject damageTakenEffect;
     
     [SerializeField] private Transform groundCheck;
     public float groundDistance = 0.4f;
@@ -62,4 +63,21 @@ public class PlayerMovement : MonoBehaviour
         velocity.y += gravity * Time.deltaTime;
         controller.Move(velocity * Time.deltaTime);
     }
+
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if(LayerMask.LayerToName(collision.gameObject.layer)=="EnemyBullet")
+        {
+            damageTakenEffect.SetActive(true);
+            StartCoroutine(StopShowingEffect());
+        }
+    }
+
+    private IEnumerator StopShowingEffect()
+    {
+        yield return new WaitForEndOfFrame();
+        damageTakenEffect.SetActive(false);
+    }
+
 }
