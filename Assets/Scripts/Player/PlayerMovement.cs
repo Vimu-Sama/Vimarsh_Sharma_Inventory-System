@@ -25,9 +25,12 @@ public class PlayerMovement : MonoBehaviour
     public LayerMask groundMask;
     public CharacterController controller;
 
+    private GameManager gameManager;
+
     private void Start()
     {
         RestrictPlayerMovementAndShooting += SetPlayerMovement;
+        gameManager= FindObjectOfType<GameManager>();
     }
 
 
@@ -58,9 +61,13 @@ public class PlayerMovement : MonoBehaviour
             velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
         }
 
-        if(Input.GetKey(KeyCode.Escape))
+        if(Cursor.lockState == CursorLockMode.Locked && Input.GetKeyDown(KeyCode.Escape))
         {
             Cursor.lockState = CursorLockMode.None;
+        }
+        else if(Cursor.lockState==CursorLockMode.None && Input.GetKeyDown(KeyCode.Escape))
+        {
+            Cursor.lockState = CursorLockMode.Locked;
         }
 
         velocity.y += gravity * Time.deltaTime;
@@ -72,8 +79,14 @@ public class PlayerMovement : MonoBehaviour
     {
         if(LayerMask.LayerToName(collision.gameObject.layer)=="EnemyBullet")
         {
+            if (playerHealth < 0)
+                return;
             if (playerHealth < 10)
+            {
+                playerHealth -=10;
                 GameOver?.Invoke();
+            }
+                
             playerHealth -= 10;
             healthSlider.value = (float)playerHealth / 100;
             damageTakenEffect.SetActive(true);
