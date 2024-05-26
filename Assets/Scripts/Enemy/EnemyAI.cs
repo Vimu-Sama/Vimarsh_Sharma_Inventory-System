@@ -2,9 +2,9 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 
-
 public class EnemyAI : MonoBehaviour
 {
+    private Vector3 directionToPlayer;
     private Renderer objectRenderer;
     private Color originalColor;
     public int health = 100;
@@ -44,7 +44,9 @@ public class EnemyAI : MonoBehaviour
     void DetectPlayer()
     {
         RaycastHit hit;
-        Vector3 directionToPlayer = shootPoint.forward;
+        directionToPlayer = (player != null) ? (player.position - transform.position).normalized : transform.forward;
+        Debug.DrawLine(transform.position, transform.position + directionToPlayer * detectionRange, Color.red);
+
         if (Physics.Raycast(transform.position, directionToPlayer, out hit, detectionRange, playerLayer))
         {
             if (hit.collider.CompareTag("Player"))
@@ -62,6 +64,7 @@ public class EnemyAI : MonoBehaviour
         // Look at the player
         Vector3 playerPosition = player.position;
         transform.LookAt(new Vector3(playerPosition.x, transform.position.y, playerPosition.z));
+        shootPoint.LookAt(playerPosition);
 
         // Shoot at the player
         shootTimer -= Time.deltaTime;
@@ -106,4 +109,3 @@ public class EnemyAI : MonoBehaviour
     }
 
 }
-

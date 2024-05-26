@@ -4,13 +4,25 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
+    private bool startTrackingBossFight= false;
+    private AudioSource gameManagerAudioSource;
     [SerializeField] private GameObject gameOverPanel;
     [SerializeField] private GameObject gameWinPanel;
     [SerializeField] private GameObject gamePauseButton;
-    [SerializeField]  private EnemyAI[] bossEnemyList;
+    [SerializeField] private EnemyAI[] bossEnemyList;
+    [SerializeField] private AudioClip gameNormalBackGroundScore;
+    [SerializeField] private AudioClip bossFightBackGroundScore;
     private void Start()
     {
         PlayerMovement.GameOver += GameOverFunction;
+        gameManagerAudioSource = GetComponent<AudioSource>();
+    }
+
+
+    private void Update()
+    {
+        if (startTrackingBossFight)
+            CheckIfWonGame();
     }
 
     private void GameOverFunction()
@@ -26,8 +38,9 @@ public class GameManager : MonoBehaviour
         Time.timeScale = 0f;
         gameOverPanel.SetActive(true);
         gamePauseButton.SetActive(false);
+        gameManagerAudioSource.Stop();
     }
-    public void WonGame()
+    public void CheckIfWonGame()
     {
         for(int i=0;i<bossEnemyList.Length;i++)
         {
@@ -38,10 +51,24 @@ public class GameManager : MonoBehaviour
         }
         Time.timeScale = 0f;
         gameWinPanel.SetActive(true);
+        gameManagerAudioSource.Stop();
     }
 
     private void OnDestroy()
     {
         PlayerMovement.GameOver -= GameOverFunction;
     }
+
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if(other.gameObject.tag == "Player")
+        {
+            startTrackingBossFight = true;
+            gameManagerAudioSource.clip = bossFightBackGroundScore;
+            gameManagerAudioSource.Play();
+            GetComponent<BoxCollider>().enabled = false;
+        }
+    }
+
 }

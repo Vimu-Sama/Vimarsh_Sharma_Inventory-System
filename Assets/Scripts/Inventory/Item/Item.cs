@@ -27,6 +27,18 @@ namespace Items
 
         public int ItemQuantity { get { return itemQuantity; } set { itemQuantity = value; } }
 
+        private void Awake()
+        {
+            gameObject.GetComponent<BoxCollider>().enabled = false;
+            StartCoroutine(ActivateColliderAgain());
+        }
+
+        private IEnumerator ActivateColliderAgain()
+        {
+            yield return new WaitForSeconds(1f);
+            gameObject.GetComponent<BoxCollider>().enabled = true;
+        }
+
         protected virtual void Start()
         {
             inventoryManager = FindObjectOfType<InventoryManager>().GetComponent<InventoryManager>();

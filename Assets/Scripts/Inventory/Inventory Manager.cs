@@ -59,26 +59,31 @@ namespace Inventory
             }
             if(Input.GetKeyDown(KeyCode.G))
             {
-                for (int i = 0, j = 0; i < itemSlots.Length && j < uniqueItemSlots.Length; i++, j++)
+                for (int i = 0; i < itemSlots.Length;  i++)
                 {
                     if (itemSlots[i].itemSlotSelectionHighlight.activeInHierarchy && itemSlots[i].IsItemSlotEmpty==false)
                     {
                         temp = Instantiate(itemSlots[i].ItemPrefab, droppedItemSpawnPos);
                         temp.GetComponent<Item>().ItemQuantity =itemSlots[i].CurrentSlotQuantity; 
                         temp.transform.parent = null;
-                        temp.transform.localScale = Vector3.one; 
+                        temp.transform.rotation = Quaternion.identity;
+                        temp.transform.localScale = Vector3.one;
                         itemSlots[i].RemoveItem(itemSlots[i].name, itemSlots[i].CurrentSlotQuantity);
                         DeselectAllItemSlots();
                         break;
                     }
-                    else if (uniqueItemSlots[j].itemSlotSelectionHighlight.activeInHierarchy && uniqueItemSlots[i].IsItemSlotEmpty==false)
+                }
+                for(int j = 0; j < uniqueItemSlots.Length; j++)
+                {
+                    if (uniqueItemSlots[j].itemSlotSelectionHighlight.activeInHierarchy && uniqueItemSlots[j].IsItemSlotEmpty == false)
                     {
                         //code to drop item
-                        temp = Instantiate(uniqueItemSlots[i].ItemPrefab, droppedItemSpawnPos);
+                        temp = Instantiate(uniqueItemSlots[j].ItemPrefab, droppedItemSpawnPos);
                         temp.transform.parent = null;
+                        temp.transform.rotation = Quaternion.identity;
                         temp.transform.localScale = droppedItemSpawnPos.localScale;
                         DroppedAllWeapons?.Invoke();
-                        uniqueItemSlots[i].RemoveItem(uniqueItemSlots[i].name, uniqueItemSlots[i].CurrentSlotQuantity);
+                        uniqueItemSlots[j].RemoveItem(uniqueItemSlots[j].name, uniqueItemSlots[j].CurrentSlotQuantity);
                         DeselectAllItemSlots();
                         break;
                     }
@@ -156,7 +161,7 @@ namespace Inventory
             return tempIntegerVariable;
         }
 
-        public bool DeleteItemFromInventory(string deleteItemName, int itemQuantity)
+        public bool RemoveItemFromInventory(string deleteItemName, int itemQuantity)
         {
             tempBoolVariable = false;
             for(int i = 0; i < itemSlots.Length;i++)

@@ -2,6 +2,7 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
 using JetBrains.Annotations;
+using UnityEngine.EventSystems;
 
 
 namespace Inventory.itemSlot
@@ -26,6 +27,27 @@ namespace Inventory.itemSlot
             AssignItemToSlot(itemName, currentSlotQuantity, itemImage, itemModel);
             contentQuantityIndicator.text = currentSlotQuantity.ToString();
             return tempVariable;
+        }
+
+
+        public override void OnPointerClick(PointerEventData eventData)
+        {
+            if (eventData.button == PointerEventData.InputButton.Left)
+            {
+                if (itemSlotSelectionHighlight.gameObject.activeInHierarchy == true)
+                {
+                    if (itemName == "MedKit")
+                    {
+                        PlayerMovement.AddHealth?.Invoke(10);
+                        RemoveItem(itemName, 1);
+                    }
+                }
+                else
+                {
+                    InventoryManager.DeSelectItems?.Invoke();
+                    itemSlotSelectionHighlight.gameObject.SetActive(true);
+                }
+            }
         }
 
     }

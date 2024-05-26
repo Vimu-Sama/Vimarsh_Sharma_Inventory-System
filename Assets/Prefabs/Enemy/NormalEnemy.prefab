@@ -258,7 +258,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 100
-  detectionRange: 50
+  detectionRange: 100
   shootInterval: 1
   projectilePrefab: {fileID: 6614361263082105623, guid: b5ddfc693f47d014d9faddf8e1284902, type: 3}
   shootPoint: {fileID: 8424156706746086279}

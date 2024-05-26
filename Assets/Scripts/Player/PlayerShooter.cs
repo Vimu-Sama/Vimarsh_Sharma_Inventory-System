@@ -57,7 +57,7 @@ public class PlayerShooter : MonoBehaviour
         }
         bulletPrefab = weaponManager.CurrentBulletPrefab;
         currentAmmoBeingUsed = weaponManager.CurrentAmmoUsed;
-        if(inventoryManager.DeleteItemFromInventory(currentAmmoBeingUsed.name, 1))
+        if(inventoryManager.RemoveItemFromInventory(currentAmmoBeingUsed.name, 1))
         {
             GameObject bullet = Instantiate(bulletPrefab, bulletSpawn.position, bulletSpawn.rotation);
             if(!audioSource.isPlaying)
