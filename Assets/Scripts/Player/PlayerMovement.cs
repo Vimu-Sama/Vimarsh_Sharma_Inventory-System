@@ -1,6 +1,5 @@
 using UnityEngine;
 using System;
-using Unity.VisualScripting;
 using System.Collections;
 using UnityEngine.UI;
 
@@ -25,8 +24,6 @@ public class PlayerMovement : MonoBehaviour
     public float groundDistance = 0.4f;
     public LayerMask groundMask;
     public CharacterController controller;
-
-    private GameManager gameManager;
 
     private void Start()
     {

@@ -1,21 +1,18 @@
 using Inventory;
-using Unity.VisualScripting;
 using UnityEngine;
 using WeaponManagement;
-using static UnityEngine.GraphicsBuffer;
 
 public class PlayerShooter : MonoBehaviour
 {
     private bool disableFiring = false;
     private AudioSource audioSource;
-    public float damage = 10f;
-    public float range = 100f;
-    public float fireRate = 15f;
-    public Camera fpsCam;
-    public GameObject bulletPrefab;
-    public GameObject currentAmmoBeingUsed;
-    public Transform bulletSpawn;
-    public float bulletSpeed = 20f;
+    [SerializeField] private float range = 100f;
+    [SerializeField] private float fireRate = 15f;
+    [SerializeField] private Camera fpsCam;
+    [SerializeField] private GameObject bulletPrefab;
+    [SerializeField] private GameObject currentAmmoBeingUsed;
+    [SerializeField] private Transform bulletSpawn;
+    [SerializeField] private float bulletSpeed = 20f;
     [SerializeField] private InventoryManager inventoryManager;
     [SerializeField] private WeaponManager weaponManager;
 
@@ -68,5 +65,10 @@ public class PlayerShooter : MonoBehaviour
         {
             audioSource.Stop();
         }
+    }
+
+    private void OnDestroy()
+    {
+        PlayerMovement.RestrictPlayerMovementAndShooting -= SetAbilityToFire;
     }
 }

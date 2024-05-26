@@ -2,7 +2,6 @@ using Inventory.itemSlot;
 using System;
 using UnityEngine;
 using Items;
-using WeaponManagement;
 using TMPro;
 
 

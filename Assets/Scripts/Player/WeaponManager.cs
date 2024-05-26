@@ -1,7 +1,7 @@
 using Inventory;
-using Items;
 using UnityEngine;
 using TMPro;
+using System;
 
 
 namespace WeaponManagement
@@ -81,6 +81,11 @@ namespace WeaponManagement
             currentBulletPrefab = null;
         }
 
+
+        private void OnDestroy()
+        {
+            InventoryManager.DroppedAllWeapons -= ResetWeapon;
+        }
     }
 
 }

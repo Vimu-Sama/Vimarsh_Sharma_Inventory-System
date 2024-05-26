@@ -1,10 +1,6 @@
-using System;
 using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 using Inventory;
-using Unity.IO.LowLevel.Unsafe;
 
 public enum ItemType
 {

@@ -1,10 +1,9 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    private bool startTrackingBossFight= false;
+    private bool startTrackingBossFight = false;
     private AudioSource gameManagerAudioSource;
     [SerializeField] private GameObject gameStartingPanel;
     [SerializeField] private GameObject gameOverPanel;
@@ -44,9 +43,9 @@ public class GameManager : MonoBehaviour
     }
     public void CheckIfWonGame()
     {
-        for(int i=0;i<bossEnemyList.Length;i++)
+        for (int i = 0; i < bossEnemyList.Length; i++)
         {
-            if (bossEnemyList[i]!=null)
+            if (bossEnemyList[i] != null)
             {
                 return;
             }
@@ -56,15 +55,9 @@ public class GameManager : MonoBehaviour
         gameManagerAudioSource.Stop();
     }
 
-    private void OnDestroy()
-    {
-        PlayerMovement.GameOver -= GameOverFunction;
-    }
-
-
     private void OnTriggerEnter(Collider other)
     {
-        if(other.gameObject.tag == "Player")
+        if (other.gameObject.tag == "Player")
         {
             startTrackingBossFight = true;
             gameManagerAudioSource.clip = bossFightBackGroundScore;
@@ -72,5 +65,11 @@ public class GameManager : MonoBehaviour
             GetComponent<BoxCollider>().enabled = false;
         }
     }
+
+    private void OnDestroy()
+    {
+        PlayerMovement.GameOver -= GameOverFunction;
+    }
+
 
 }

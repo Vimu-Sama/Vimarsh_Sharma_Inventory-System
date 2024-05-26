@@ -4,22 +4,23 @@ using UnityEngine.UI;
 
 public class EnemyAI : MonoBehaviour
 {
-    private Vector3 directionToPlayer;
-    private Renderer objectRenderer;
-    private Color originalColor;
-    public int health = 100;
-    public float detectionRange = 20f;
-    public float shootInterval = 2f;
-    public GameObject projectilePrefab;
-    public Transform shootPoint;
-    public LayerMask playerLayer;
-    public float projectileSpeed = 10f;
-    public Slider enemyHealthBarIndicator;
-
     private Transform player;
     private bool playerDetected = false;
     private float shootTimer;
     private int originalHealth;
+    private Vector3 directionToPlayer;
+    private Renderer objectRenderer;
+    private Color originalColor;
+    [SerializeField] private int health = 100;
+    [SerializeField] private float detectionRange = 20f;
+    [SerializeField] private float shootInterval = 2f;
+    [SerializeField] private GameObject projectilePrefab;
+    [SerializeField] private Transform shootPoint;
+    [SerializeField] private LayerMask playerLayer;
+    [SerializeField] private float projectileSpeed = 10f;
+    [SerializeField] private Slider enemyHealthBarIndicator;
+
+    
 
     void Start()
     {
