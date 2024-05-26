@@ -12,6 +12,6 @@ This project focuses on the implementation of the Inventory system, but in this 
 
 So, items have this kind of hierarchy:
 
-![Image showcasing the Items Hierarchy](https://drive.google.com/file/d/1j3rKuseRB5p3_p-n036AaUG8wap0gs1I/view?usp=sharing)
+![Image showcasing the Items Hierarchy](https://ibb.co/PFN6bnt)
 
 
