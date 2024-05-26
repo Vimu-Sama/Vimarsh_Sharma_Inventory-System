@@ -2,6 +2,11 @@
 # Inventory-System (FPS Game)
 ----------------------------------------------------------
 
+![image](https://github.com/Vimu-Sama/Vimarsh_Sharma_Inventory-System/assets/42619785/4e0e2d8c-2eb1-45d6-a371-6ff9f43e0f92)
+
+![Uploading image.png…]()
+
+
 This project focuses on the implementation of the Inventory system, but in this readme, the summarisation of other aspects like Player, Enemy classes is also given.
 
 -------------------------------------------------------
@@ -73,3 +78,9 @@ Mouse Look- this assist in aiming and look around
 
 ## Connections- 
 
+This image contains the whole logic and how the Inventory system classes are interacting with each other, with Inventory Manager as the backbone.
+
+![image](https://github.com/Vimu-Sama/Vimarsh_Sharma_Inventory-System/assets/42619785/27d5dd4e-c56b-4617-896e-adf99a2e7ba1)
+
+
+That's all! Thank You for reading this through.
