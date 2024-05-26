@@ -12,6 +12,4 @@ This project focuses on the implementation of the Inventory system, but in this 
 
 So, items have this kind of hierarchy:
 
-![Image showcasing the Items Hierarchy](https://ibb.co/PFN6bnt)
-
-
+![item-Classes-Hierarchy](https://github.com/Vimu-Sama/Vimarsh_Sharma_Inventory-System/assets/42619785/5b42a618-fe48-4271-a589-39822a5a91b1)
