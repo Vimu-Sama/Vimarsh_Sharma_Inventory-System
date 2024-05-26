@@ -53,14 +53,5 @@ namespace Items
             if (LayerMask.LayerToName(other.gameObject.layer) == "Player")
                 weaponManager.WeaponSwapPrompt.enabled=false;
         }
-
-        //private IEnumerator CanSwapWeapon()
-        //{
-        //    weaponManager.canSwapWeapons = false;
-        //    yield return new WaitForSeconds(weaponSwapCoolDownTime);
-        //    weaponManager.canSwapWeapons = true;
-        //}
-
-
     }
 }
