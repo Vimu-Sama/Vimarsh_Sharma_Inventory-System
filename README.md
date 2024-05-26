@@ -14,7 +14,8 @@ This project focuses on the implementation of the Inventory system, but in this 
 
 So, items have this kind of hierarchy:
 
-![Image showcasing the Items Hierarchy](https://drive.google.com/file/d/1j3rKuseRB5p3_p-n036AaUG8wap0gs1I/view?usp=sharing)
+
+![item-Classes-Hierarchy](https://github.com/Vimu-Sama/Vimarsh_Sharma_Inventory-System/assets/42619785/f5a4e362-00d0-431f-961a-ab563e809e98)
 
 
 Items- as can be seen is the base class and conists of most of the basic functions of collectible item, but there were items like guns and if extended there can be various items like helmet, armor etc. which need to be changed in terms of physical outlook as well as will have traits associated with them when picked up and they can't be stacked, thus they are unique.
