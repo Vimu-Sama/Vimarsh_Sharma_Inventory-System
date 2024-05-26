@@ -26,7 +26,6 @@ public class PlayerShooter : MonoBehaviour
     {
         PlayerMovement.RestrictPlayerMovementAndShooting += SetAbilityToFire;
         audioSource = GetComponent<AudioSource>();
-        Cursor.lockState = CursorLockMode.Locked;
     }
 
     private void SetAbilityToFire(bool var)

@@ -6,6 +6,7 @@ public class GameManager : MonoBehaviour
 {
     private bool startTrackingBossFight= false;
     private AudioSource gameManagerAudioSource;
+    [SerializeField] private GameObject gameStartingPanel;
     [SerializeField] private GameObject gameOverPanel;
     [SerializeField] private GameObject gameWinPanel;
     [SerializeField] private GameObject gamePauseButton;
@@ -14,6 +15,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private AudioClip bossFightBackGroundScore;
     private void Start()
     {
+        gameStartingPanel.SetActive(true);
         PlayerMovement.GameOver += GameOverFunction;
         gameManagerAudioSource = GetComponent<AudioSource>();
     }
