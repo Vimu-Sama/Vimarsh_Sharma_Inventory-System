@@ -42,6 +42,7 @@ public class EnemyAI : MonoBehaviour
         }
     }
 
+    //for detecting player, by shooting raycast
     void DetectPlayer()
     {
         RaycastHit hit;
@@ -91,17 +92,20 @@ public class EnemyAI : MonoBehaviour
 
     private void OnCollisionEnter(Collision other)
     {
+        // reducing the health of enemy when player's bullet touches it and gets killed
         if (LayerMask.LayerToName(other.gameObject.layer) == "Bullet")
         {
             if (health < 10)
                 Destroy(gameObject);
             health -= 10;
+            //health bar indication on top of enemy
             enemyHealthBarIndicator.gameObject.SetActive(true);
             enemyHealthBarIndicator.value = (float)health / originalHealth;
             StartCoroutine(ChangeEnemyColorOnHit());
         }
     }
 
+    //enemy color changes on getting hit, for the sake of visual feedback
     private IEnumerator ChangeEnemyColorOnHit()
     {
         objectRenderer.material.color = Color.magenta;

@@ -52,7 +52,9 @@ public class PlayerShooter : MonoBehaviour
             return;
         }
         bulletPrefab = weaponManager.CurrentBulletPrefab;
+        //this assigns the ammo from which the count needs to be deducted
         currentAmmoBeingUsed = weaponManager.CurrentAmmoUsed;
+        //condition to check the availablity of the ammo of that particular type of bullet in inventory
         if(inventoryManager.RemoveItemFromInventory(currentAmmoBeingUsed.name, 1))
         {
             GameObject bullet = Instantiate(bulletPrefab, bulletSpawn.position, bulletSpawn.rotation);

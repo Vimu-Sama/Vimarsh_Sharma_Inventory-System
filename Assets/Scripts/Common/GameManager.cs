@@ -22,10 +22,13 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
+        // this initiates the check, the bool is changed when
+        // the player enters the trigger area for final boss fight
         if (startTrackingBossFight)
             CheckIfWonGame();
     }
 
+    //when game's over
     private void GameOverFunction()
     {
         if (this.gameObject == null)
@@ -41,8 +44,10 @@ public class GameManager : MonoBehaviour
         gamePauseButton.SetActive(false);
         gameManagerAudioSource.Stop();
     }
+
     public void CheckIfWonGame()
     {
+        //this loop checks if the main three enemy bosses are killed or not
         for (int i = 0; i < bossEnemyList.Length; i++)
         {
             if (bossEnemyList[i] != null)
@@ -57,6 +62,7 @@ public class GameManager : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        //tracks the trigger for boss fight and make changes to the vibe accordingly
         if (other.gameObject.tag == "Player")
         {
             startTrackingBossFight = true;
@@ -66,6 +72,7 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    //de-initializing
     private void OnDestroy()
     {
         PlayerMovement.GameOver -= GameOverFunction;

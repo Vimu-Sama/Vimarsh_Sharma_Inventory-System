@@ -23,6 +23,7 @@ namespace Items
 
         public int ItemQuantity { get { return itemQuantity; } set { itemQuantity = value; } }
 
+        //to avoid immediate pick up when object is dropped
         private void Awake()
         {
             gameObject.GetComponent<BoxCollider>().enabled = false;
@@ -42,6 +43,7 @@ namespace Items
 
         protected virtual void OnTriggerStay(Collider other)
         {
+            //adding item to player's inventory whenever the player is detected
             if (LayerMask.LayerToName(other.gameObject.layer) == "Player")
             {
                 itemQuantity = inventoryManager.AddItemToInventory(itemSO.name, itemQuantity, itemSO.itemImage, itemSO.itemType, itemSO.itemPrefab);
@@ -52,6 +54,7 @@ namespace Items
 
         protected void FixedUpdate()
         {
+            //for giving visual effects to the item
             transform.Rotate(Vector3.up, rotateSpeed * Time.fixedDeltaTime);
         }
 

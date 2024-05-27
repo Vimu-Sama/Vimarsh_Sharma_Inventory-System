@@ -9,6 +9,8 @@ namespace Inventory
 {
     public class InventoryManager : MonoBehaviour
     {
+
+        //actions for talking to other scripts, without sacrifing the flexibility
         public static Action DeSelectItems;
         public static Action DroppedAllWeapons;
         public static Action<string> UpdateBulletUI;
@@ -29,10 +31,6 @@ namespace Inventory
         #endregion
 
 
-        private int fixedPrimaryGunSlot;
-        private int fixedSecondaryGunSlot;
-        private int armorFixedSlot;
-
         private void Start()
         {
             DeSelectItems += DeselectAllItemSlots;
@@ -42,13 +40,14 @@ namespace Inventory
 
         private void Update()
         {
+            //To open Inventory, checks input and if the inventory is not already opened
             if (Input.GetKeyDown(KeyCode.Tab) && !InventoryUI.activeInHierarchy)
             {
                 InventoryUI.SetActive(true);
                 isInventoryOn = true;
                 Cursor.lockState = CursorLockMode.None;
             }
-
+            //To close Inventory, checks input and if the inventory is already opened
             else if (Input.GetKeyDown(KeyCode.Tab) && InventoryUI.activeInHierarchy)
             {
                 InventoryUI.SetActive(false);
@@ -56,10 +55,12 @@ namespace Inventory
                 DeselectAllItemSlots();
                 Cursor.lockState = CursorLockMode.Locked;
             }
+            //for dropping a selected item from the Inventory
             if(Input.GetKeyDown(KeyCode.G))
             {
                 for (int i = 0; i < itemSlots.Length;  i++)
                 {
+                    //checks whether the itemSlot is selected or not and if it is not empty- for stackable item slots
                     if (itemSlots[i].itemSlotSelectionHighlight.activeInHierarchy && itemSlots[i].IsItemSlotEmpty==false)
                     {
                         temp = Instantiate(itemSlots[i].ItemPrefab, droppedItemSpawnPos);
@@ -72,6 +73,7 @@ namespace Inventory
                         break;
                     }
                 }
+                //same for the unique items,checking if slot is selected or not
                 for(int j = 0; j < uniqueItemSlots.Length; j++)
                 {
                     if (uniqueItemSlots[j].itemSlotSelectionHighlight.activeInHierarchy && uniqueItemSlots[j].IsItemSlotEmpty == false)
@@ -87,8 +89,10 @@ namespace Inventory
                         break;
                     }
                 }
+                //updating bullet count by adding all the ammo from check with parameter passed below
                 UpdateBulletCount(currentAmmoBeingUsed);
             }
+            //restricts player movements when inventory is open
             PlayerMovement.RestrictPlayerMovementAndShooting(InventoryUI.activeInHierarchy);
         }
 
@@ -106,6 +110,7 @@ namespace Inventory
             }
         }
 
+        //deselects all item slots, when selected in inventory
         public void DeselectAllItemSlots()
         {
             for(int i=0;i<uniqueItemSlots.Length;i++)
@@ -119,7 +124,7 @@ namespace Inventory
         }
 
 
-
+        //Add item to Inventory
         public int AddItemToInventory(string itemName, int itemQuantity, Sprite itemImage, ItemType itemType, GameObject itemPrefab)
         {
             if (itemType == ItemType.collectible)
@@ -127,6 +132,7 @@ namespace Inventory
                 tempIntegerVariable = 0;
                 for (int i = 0; i < itemSlots.Length; i++)
                 {
+                    //checks if item is present or not, if yes then the new item will be added onto the old one or it will assigned to new compartment
                     if ((!itemSlots[i].IsItemSlotFilled && itemSlots[i].ItemName == itemName) ||
                         itemSlots[i].IsItemSlotEmpty)
                     {
@@ -160,6 +166,7 @@ namespace Inventory
             return tempIntegerVariable;
         }
 
+        //removing item from inventory
         public bool RemoveItemFromInventory(string deleteItemName, int itemQuantity)
         {
             tempBoolVariable = false;
@@ -174,6 +181,12 @@ namespace Inventory
             }
             UpdateBulletCount(currentAmmoBeingUsed);
             return tempBoolVariable;
+        }
+
+        private void OnDestroy()
+        {
+            DeSelectItems -= DeselectAllItemSlots;
+            UpdateBulletUI -= UpdateBulletCount;
         }
     }
 }

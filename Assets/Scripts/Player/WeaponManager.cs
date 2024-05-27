@@ -58,20 +58,26 @@ namespace WeaponManagement
             InventoryManager.DroppedAllWeapons += ResetWeapon;
         }
 
+
+        // This function helps in assigning the player, the type of current gun, it's respective ammo and bullet prefab
         public void SetCurrentWeaponProperties(GameObject weaponModel, GameObject ammo, GameObject bulletPrefab)
         {
             if (currentWeapon == null || (currentWeapon != null && Input.GetKey(KeyCode.F)))
             {
+                //this updates the bullet count in HUD
                 InventoryManager.UpdateBulletUI(ammo.name);
                 currentWeapon = weaponModel;
                 currentAmmoUsed = ammo;
                 currentBulletPrefab = bulletPrefab;
+                //destroying previous weapon on the player if there's any 
                 Destroy(tempVariable);
+                //assigning new weapon to the player, this makes for the visual, the gun player is holding
                 tempVariable = Instantiate(currentWeapon, weaponSpawnLocation);
                 tempVariable.transform.parent = this.transform;
             }
         }
 
+        //when there's no weapon available or player just drops off the gun
         public void ResetWeapon()
         {
             tempVariable.transform.parent = this.transform;

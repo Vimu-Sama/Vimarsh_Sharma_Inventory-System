@@ -26,7 +26,7 @@ namespace Inventory.itemSlot
             return tempVariable;
         }
 
-
+        // for using medication, only if it is already selected in inventory
         public override void OnPointerClick(PointerEventData eventData)
         {
             if (eventData.button == PointerEventData.InputButton.Left)

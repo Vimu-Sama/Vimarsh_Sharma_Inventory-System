@@ -5,11 +5,10 @@ namespace Items
 {
     public class EquipableItems : Item
     {
-
+        //contains the current weapon data
         [SerializeField] private GameObject currentWeapon;
         [SerializeField] private GameObject currentAmmoUsed;
         [SerializeField] private GameObject currentBulletPrefab;
-        [SerializeField] private float weaponSwapCoolDownTime= 1f;
         [SerializeField] private WeaponManager weaponManager;
 
         protected override void Start()
@@ -21,6 +20,7 @@ namespace Items
         {
             if((LayerMask.LayerToName(other.gameObject.layer) == "Player") && weaponManager.CurrentWeapon!=null)
             {
+                // this enables a prompt which hints player into swapping weapons by pressing 'F' key
                 weaponManager.WeaponSwapPrompt.enabled = true;
             }
         }
@@ -38,11 +38,11 @@ namespace Items
                 {
                     //funcionality to increase the inventory size
                 }
+                //to swap weapon or it doesn't have a weapon
                 if((tempCheck!=null && Input.GetKey(KeyCode.F)) || (tempCheck == null))
                 {
                     base.OnTriggerStay(other);
                     weaponManager.WeaponSwapPrompt.enabled = false;
-                    //StartCoroutine(CanSwapWeapon());
                 }
                     
             }
