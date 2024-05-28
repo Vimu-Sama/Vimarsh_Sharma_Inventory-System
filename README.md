@@ -1,13 +1,12 @@
-
+![Screenshot 2024-05-27 050311](https://github.com/Vimu-Sama/Vimarsh_Sharma_Inventory-System/assets/42619785/1d774b5e-6269-4dae-939e-9364bbc21fad)
 # Inventory-System (FPS Game)
 ----------------------------------------------------------
 
 ![image](https://github.com/Vimu-Sama/Vimarsh_Sharma_Inventory-System/assets/42619785/4e0e2d8c-2eb1-45d6-a371-6ff9f43e0f92)
 
-![Uploading Screenshot 2024-05-27 050311.png…]()
-
-
 This project focuses on the implementation of the Inventory system, but in this readme, the summarisation of other aspects like Player, Enemy classes is also given.
+
+![Screenshot 2024-05-27 050311](https://github.com/Vimu-Sama/Vimarsh_Sharma_Inventory-System/assets/42619785/4198ee3f-db70-4218-b28a-779de2efca46)
 
 -------------------------------------------------------
 
