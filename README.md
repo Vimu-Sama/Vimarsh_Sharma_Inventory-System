@@ -4,7 +4,7 @@
 
 ![image](https://github.com/Vimu-Sama/Vimarsh_Sharma_Inventory-System/assets/42619785/4e0e2d8c-2eb1-45d6-a371-6ff9f43e0f92)
 
-![Uploading image.png…]()
+![Uploading Screenshot 2024-05-27 050311.png…]()
 
 
 This project focuses on the implementation of the Inventory system, but in this readme, the summarisation of other aspects like Player, Enemy classes is also given.
