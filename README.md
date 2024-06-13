@@ -1,4 +1,3 @@
-![Screenshot 2024-05-27 050311](https://github.com/Vimu-Sama/Vimarsh_Sharma_Inventory-System/assets/42619785/1d774b5e-6269-4dae-939e-9364bbc21fad)
 # Inventory-System (FPS Game)
 ----------------------------------------------------------
 
