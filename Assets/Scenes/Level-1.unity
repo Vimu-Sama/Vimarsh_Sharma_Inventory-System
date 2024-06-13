@@ -3901,8 +3901,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -10.007, y: 659.02655}
-  m_SizeDelta: {x: 1077.7491, y: 304.4617}
+  m_AnchoredPosition: {x: -10.007, y: 703.0062}
+  m_SizeDelta: {x: 1077.7491, y: 216.5023}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &566330552
 MonoBehaviour:
@@ -3929,11 +3929,8 @@ MonoBehaviour:
     -You can equip
     one weapon at a time
 
-    - Press Escape to Toggle between cursor and non-cursor
-    Gameplay
+    - Press Escape to open Pause Menu
 
-    - Press LMB after Pressing Escape, if You switching to cursorless
-    Mode
 
     Key Mappings-
 
@@ -4496,7 +4493,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &662486923
 RectTransform:
   m_ObjectHideFlags: 0
@@ -4855,8 +4852,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 11, y: 407}
-  m_SizeDelta: {x: 663.229, y: 197}
+  m_AnchoredPosition: {x: 11, y: 441.22668}
+  m_SizeDelta: {x: 663.229, y: 269.3223}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &721933369
 MonoBehaviour:
@@ -4889,6 +4886,8 @@ MonoBehaviour:
 
     G                              
     - Drop Items
+
+    Escape                     - Pause Menu
 
 '
   m_isRightToLeft: 0
@@ -7437,7 +7436,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -10.007, y: 228.5}
+  m_AnchoredPosition: {x: 0.000019073, y: 203}
   m_SizeDelta: {x: 1077.7491, y: 107.46}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1194391272
@@ -11843,6 +11842,10 @@ PrefabInstance:
       propertyPath: pauseButtonReference
       value: 
       objectReference: {fileID: 145292402}
+    - target: {fileID: 4667108010617050990, guid: 20fc2c6e35c216341bf8ed5b72d782a5, type: 3}
+      propertyPath: resumeButtonReference
+      value: 
+      objectReference: {fileID: 882188111}
     - target: {fileID: 7259379056133472287, guid: 20fc2c6e35c216341bf8ed5b72d782a5, type: 3}
       propertyPath: m_Name
       value: Player

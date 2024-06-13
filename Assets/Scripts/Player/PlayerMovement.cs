@@ -22,6 +22,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private Transform groundCheck;
     [SerializeField] private Slider healthSlider;
     [SerializeField] private Button pauseButtonReference;
+    [SerializeField] private Button resumeButtonReference;
 
     public float groundDistance = 0.4f;
     public LayerMask groundMask;
@@ -69,7 +70,7 @@ public class PlayerMovement : MonoBehaviour
         //might not need this now
         else if (Cursor.lockState == CursorLockMode.None && Input.GetKeyDown(KeyCode.Escape))
         {
-            Cursor.lockState = CursorLockMode.Locked;
+            Cursor.lockState= CursorLockMode.Locked;
         }
 
         velocity.y += gravity * Time.deltaTime;
