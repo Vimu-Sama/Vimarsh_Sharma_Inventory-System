@@ -2,6 +2,7 @@ using UnityEngine;
 using System;
 using System.Collections;
 using UnityEngine.UI;
+using Unity.VisualScripting;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -20,6 +21,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private GameObject damageTakenEffect;
     [SerializeField] private Transform groundCheck;
     [SerializeField] private Slider healthSlider;
+    [SerializeField] private Button pauseButtonReference;
 
     public float groundDistance = 0.4f;
     public LayerMask groundMask;
@@ -61,8 +63,10 @@ public class PlayerMovement : MonoBehaviour
 
         if (Cursor.lockState == CursorLockMode.Locked && Input.GetKeyDown(KeyCode.Escape))
         {
+            pauseButtonReference.onClick.Invoke();
             Cursor.lockState = CursorLockMode.None;
         }
+        //might not need this now
         else if (Cursor.lockState == CursorLockMode.None && Input.GetKeyDown(KeyCode.Escape))
         {
             Cursor.lockState = CursorLockMode.Locked;
